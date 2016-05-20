@@ -1,5 +1,8 @@
 import urllib2
-from bs4 import BeautifulSoup
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    from BeautifulSoup import BeautifulSoup	
 import requests
 
 def mainPage():
@@ -34,8 +37,8 @@ def infoAboutRepo():
 	def watching():
 		url = "https://github.com/"+user+'/'+repo
 		soup = BeautifulSoup(urllib2.urlopen(url).read())
-		watch = soup.find('a' , {"class" : "social-count js-social-count"}).text()
-		print 'Watchers: ' + watch
+		watch = str(soup.find('a' , {"class" : "social-count js-social-count"}).text).split('\n')
+		print 'Watchers: ' + watch[1].replace(' ','')
 	def statistics():
 		url = "https://github.com/"+user+'/'+repo
 		soup = BeautifulSoup(urllib2.urlopen(url).read())

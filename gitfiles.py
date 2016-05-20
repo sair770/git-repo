@@ -31,11 +31,10 @@ def infoAboutRepo():
 		paragraphs = soup.find('article', {"class" : "markdown-body entry-content"}).get_text()
 		print '''README\n'''
 		print paragraphs
-	#watching not working as of now. Only giving 0 as Watcher...
 	def watching():
 		url = "https://github.com/"+user+'/'+repo
 		soup = BeautifulSoup(urllib2.urlopen(url).read())
-		watch = soup.find('a' , {"class" : "social-count js-social-count"}).get_text()
+		watch = soup.find('a' , {"class" : "social-count js-social-count"}).text()
 		print 'Watchers: ' + watch
 	def statistics():
 		url = "https://github.com/"+user+'/'+repo
@@ -46,7 +45,6 @@ def infoAboutRepo():
 	statistics()
 	pulse()
 	readme()
-	#watching() ---> Now not showing correct watch number.. always 0
 	#more features to be added...
 
 

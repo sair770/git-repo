@@ -54,9 +54,10 @@ def infoAboutRepo():
 	def watching(url):
 		"""
 		"""
+		href = '/'+user+'/'+repo+'/'+'watchers'
 		# TODO: watching not working as of now. Only giving 0 as Watcher...
 		soup = BeautifulSoup(urllib2.urlopen(url).read())
-		watch = soup.find('a' , {"class" : "social-count js-social-count"}).get_text()
+		watch = soup.find('a' , {"href" : href}).text
 		print 'Watchers: %s' %(watch)
 
 
